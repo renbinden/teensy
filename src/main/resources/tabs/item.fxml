@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<!--
+  ~    Copyright 2019 Ross Binden
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<Tab xmlns="http://javafx.com/javafx"
+     xmlns:fx="http://javafx.com/fxml"
+     fx:controller="uk.co.rossbinden.teensy.controller.tab.ItemTab">
+    <BorderPane>
+        <top>
+            <VBox>
+                <HBox>
+                    <Label text="ID" textAlignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
+                        <HBox.margin>
+                            <Insets topRightBottomLeft="8.0" />
+                        </HBox.margin>
+                    </Label>
+                    <TextField fx:id="id">
+                        <HBox.margin>
+                            <Insets topRightBottomLeft="8.0" />
+                        </HBox.margin>
+                    </TextField>
+                    <Label text="Name" textAlignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
+                        <HBox.margin>
+                            <Insets topRightBottomLeft="8.0" />
+                        </HBox.margin>
+                    </Label>
+                    <TextField fx:id="name">
+                        <HBox.margin>
+                            <Insets topRightBottomLeft="8.0" />
+                        </HBox.margin>
+                    </TextField>
+                    <Label text="Dialog" textAlignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
+                        <HBox.margin>
+                            <Insets topRightBottomLeft="8.0" />
+                        </HBox.margin>
+                    </Label>
+                    <ComboBox fx:id="dialog">
+                        <HBox.margin>
+                            <Insets topRightBottomLeft="8.0" />
+                        </HBox.margin>
+                    </ComboBox>
+                    <Label text="Colour" textAlignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">
+                        <HBox.margin>
+                            <Insets topRightBottomLeft="8.0" />
+                        </HBox.margin>
+                    </Label>
+                    <Spinner fx:id="color">
+                        <HBox.margin>
+                            <Insets topRightBottomLeft="8.0" />
+                        </HBox.margin>
+                        <valueFactory>
+                            <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="2" amountToStepBy="1" min="0" max="2147483647" />
+                        </valueFactory>
+                    </Spinner>
+                </HBox>
+            </VBox>
+        </top>
+        <center>
+            <GridPane fx:id="grid" minWidth="256" minHeight="256">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="8.0" prefWidth="32.0"/>
+                    <ColumnConstraints minWidth="8.0" prefWidth="32.0"/>
+                    <ColumnConstraints minWidth="8.0" prefWidth="32.0"/>
+                    <ColumnConstraints minWidth="8.0" prefWidth="32.0"/>
+                    <ColumnConstraints minWidth="8.0" prefWidth="32.0"/>
+                    <ColumnConstraints minWidth="8.0" prefWidth="32.0"/>
+                    <ColumnConstraints minWidth="8.0" prefWidth="32.0"/>
+                    <ColumnConstraints minWidth="8.0" prefWidth="32.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="8.0" prefHeight="32.0"/>
+                    <RowConstraints minHeight="8.0" prefHeight="32.0"/>
+                    <RowConstraints minHeight="8.0" prefHeight="32.0"/>
+                    <RowConstraints minHeight="8.0" prefHeight="32.0"/>
+                    <RowConstraints minHeight="8.0" prefHeight="32.0"/>
+                    <RowConstraints minHeight="8.0" prefHeight="32.0"/>
+                    <RowConstraints minHeight="8.0" prefHeight="32.0"/>
+                    <RowConstraints minHeight="8.0" prefHeight="32.0"/>
+                </rowConstraints>
+            </GridPane>
+        </center>
+    </BorderPane>
+</Tab>

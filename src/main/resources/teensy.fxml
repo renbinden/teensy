@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<!--
+  ~    Copyright 2019 Ross Binden
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.rossbinden.teensy.controller.TeensyController">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="New" fx:id="menuItemNew" />
+                <MenuItem text="Open" fx:id="menuItemOpen" />
+                <MenuItem text="Save" fx:id="menuItemSave" />
+            </Menu>
+        </MenuBar>
+    </top>
+    <left>
+       <TreeView fx:id="tree" prefHeight="200.0" prefWidth="200.0" showRoot="false">
+           <TreeItem value="Root">
+               <children>
+                   <TreeItem fx:id="palettes" value="Palettes"/>
+                   <TreeItem fx:id="rooms" value="Rooms" />
+                   <TreeItem fx:id="endings" value="Endings" />
+                   <TreeItem fx:id="tiles" value="Tiles" />
+                   <TreeItem fx:id="sprites" value="Sprites" />
+                   <TreeItem fx:id="items" value="Items" />
+                   <TreeItem fx:id="dialogs" value="Dialog" />
+                   <TreeItem fx:id="settings" value="Settings" />
+               </children>
+           </TreeItem>
+       </TreeView>
+    </left>
+    <center>
+      <TabPane fx:id="tabs" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="ALL_TABS" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>
