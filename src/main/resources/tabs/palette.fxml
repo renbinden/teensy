@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <!--
-  ~    Copyright 2019 Ross Binden
+  ~    Copyright 2019 Ren Binden
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
   ~    you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
   ~    limitations under the License.
   -->
 
-<Tab xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="uk.co.rossbinden.teensy.controller.tab.PaletteTab">
+<Tab xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="uk.co.renbinden.teensy.controller.tab.PaletteTab">
     <VBox>
         <HBox>
             <Label text="ID" textAlignment="CENTER" maxWidth="Infinity" maxHeight="Infinity">

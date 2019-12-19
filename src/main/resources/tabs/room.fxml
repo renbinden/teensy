@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <!--
-  ~    Copyright 2019 Ross Binden
+  ~    Copyright 2019 Ren Binden
   ~
   ~    Licensed under the Apache License, Version 2.0 (the "License");
   ~    you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
   ~    limitations under the License.
   -->
 
-<Tab xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.rossbinden.teensy.controller.tab.RoomTab">
+<Tab xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.co.renbinden.teensy.controller.tab.RoomTab">
     <BorderPane>
         <top>
             <VBox>
