@@ -1,5 +1,5 @@
 /*
- *    Copyright 2019 Ross Binden
+ *    Copyright 2019 Ren Binden
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -298,36 +298,17 @@ class BitsyWorld : BitsySerializable {
     override fun serialize(): String {
         val output = StringBuilder()
         output.append(title.serialize()).append("\n")
-        output.append(version.serialize()).append("\n")
-        for (flag in flags) {
-            output.append(flag.serialize())
-        }
-        output.append("\n")
-        output.append(font.serialize()).append("\n")
-        for (palette in palettes) {
-            output.append(palette.serialize())
-        }
-        for (room in rooms) {
-            output.append(room.serialize())
-        }
-        for (tile in tiles) {
-            output.append(tile.serialize())
-        }
-        for (sprite in sprites) {
-            output.append(sprite.serialize())
-        }
-        for (item in items) {
-            output.append(item.serialize())
-        }
-        for (dialog in dialogs) {
-            output.append(dialog.serialize())
-        }
-        for (ending in endings) {
-            output.append(ending.serialize())
-        }
-        for (variable in variables) {
-            output.append(variable.serialize())
-        }
+            .append(version.serialize()).append("\n")
+            .append(flags.joinToString(transform = BitsyFlag::serialize, separator = "")).append("\n")
+            .append(font.serialize()).append("\n")
+            .append(palettes.joinToString(transform = BitsyPalette::serialize, separator = ""))
+            .append(rooms.joinToString(transform = BitsyRoom::serialize, separator = ""))
+            .append(tiles.joinToString(transform = BitsyTile::serialize, separator = ""))
+            .append(sprites.joinToString(transform = BitsySprite::serialize, separator = ""))
+            .append(items.joinToString(transform = BitsyItem::serialize, separator = ""))
+            .append(dialogs.joinToString(transform = BitsyDialog::serialize, separator = ""))
+            .append(endings.joinToString(transform = BitsyEnding::serialize, separator = ""))
+            .append(variables.joinToString(transform = BitsyVariable::serialize, separator = ""))
         return output.toString()
     }
 

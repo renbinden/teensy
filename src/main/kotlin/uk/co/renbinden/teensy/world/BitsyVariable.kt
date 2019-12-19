@@ -1,5 +1,5 @@
 /*
- *    Copyright 2019 Ross Binden
+ *    Copyright 2019 Ren Binden
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 package uk.co.renbinden.teensy.world
 
 class BitsyVariable(
-    override val id: String,
+    override var id: String,
     val value: String
 ): BitsySerializable, BitsyResource {
 

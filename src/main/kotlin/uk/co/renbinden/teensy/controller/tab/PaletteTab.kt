@@ -23,7 +23,6 @@ import javafx.geometry.Insets
 import javafx.scene.control.Button
 import javafx.scene.control.ColorPicker
 import javafx.scene.control.TextField
-import javafx.scene.control.TreeItem
 import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
@@ -33,11 +32,11 @@ import uk.co.renbinden.teensy.world.BitsyPalette
 import kotlin.math.roundToInt
 
 
-class PaletteTab {
+class PaletteTab : ResourceTab<BitsyPalette>() {
 
-    lateinit var teensy: Teensy
+    override lateinit var teensy: Teensy
 
-    @FXML lateinit var id: TextField
+    @FXML override lateinit var id: TextField
     @FXML lateinit var name: TextField
     @FXML lateinit var colors: VBox
     @FXML lateinit var addColorButton: Button
@@ -50,12 +49,7 @@ class PaletteTab {
         id.textProperty().addListener { observable, oldValue, newValue ->
             val palette = teensy.world.getPalette(oldValue)
             if (palette != null) {
-                palette.id = newValue
-                val palettesTreeItem = teensy.controller.palettes
-                val oldTreeItem = palettesTreeItem.children.firstOrNull { treeItem -> treeItem.value == oldValue }
-                val index = palettesTreeItem.children.indexOf(oldTreeItem)
-                palettesTreeItem.children.remove(oldTreeItem)
-                teensy.controller.palettes.children.add(index, TreeItem<String>(newValue))
+                updateId(palette, teensy.controller.palettes, oldValue, newValue)
             }
         }
 
@@ -116,7 +110,7 @@ class PaletteTab {
     }
 
     fun loadPalette(palette: BitsyPalette) {
-        id.text = palette.id
+        load(palette)
         name.text = palette.name ?: ""
         setColors(*palette.colors.toTypedArray())
     }

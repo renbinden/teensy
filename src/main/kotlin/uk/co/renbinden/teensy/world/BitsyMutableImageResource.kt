@@ -16,22 +16,18 @@
 
 package uk.co.renbinden.teensy.world
 
-class BitsyFont(
-    val fontName: String
-): BitsySerializable {
+interface BitsyMutableImageResource : BitsyImageResource {
 
-    override fun serialize(): String {
-        return "DEFAULT_FONT $fontName\n"
-    }
+    override var drawing: BitsyDrawing
 
-    companion object {
-        fun deserialize(lines: List<String>, i: Int): BitsyFont {
-            val fontName = lines[i].split(" ")[1]
-            return BitsyFont(fontName)
-        }
-
-        fun size(lines: List<String>, i: Int): Int {
-            return 1
+    fun attachDrawing(lines: List<String>, i: Int, drawings: List<BitsyDrawing>) {
+        var j = i
+        j++
+        val lineParts = lines[j].split(" ")
+        if (lineParts[0] == "DRW") {
+            val drawingId = lineParts[1]
+            drawing = drawings.first { drawing -> drawing.id == drawingId }
+            return
         }
     }
 

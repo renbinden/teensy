@@ -1,5 +1,5 @@
 /*
- *    Copyright 2019 Ross Binden
+ *    Copyright 2019 Ren Binden
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ class BitsyTile(
     var name: String?,
     var isWall: Boolean,
     var color: Int?
-): BitsySerializable, BitsyImageResource {
+): BitsySerializable, BitsyMutableImageResource {
 
     override fun serialize(): String {
         val output = StringBuilder()
@@ -39,17 +39,6 @@ class BitsyTile(
         }
         output.append('\n')
         return output.toString()
-    }
-
-    fun attachDrawing(lines: List<String>, i: Int, drawings: List<BitsyDrawing>) {
-        var j = i
-        j++
-        val lineParts = lines[j].split(" ")
-        if (lineParts[0] == "DRW") {
-            val drawingId = lineParts[1]
-            drawing = drawings.first { drawing -> drawing.id == drawingId }
-            return
-        }
     }
 
     companion object {

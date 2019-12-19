@@ -33,11 +33,11 @@ import uk.co.renbinden.teensy.world.room.BitsyRoomEnding
 import uk.co.renbinden.teensy.world.room.BitsyRoomItem
 
 
-class RoomTab {
+class RoomTab : ResourceTab<BitsyRoom>() {
 
-    lateinit var teensy: Teensy
+    override lateinit var teensy: Teensy
 
-    @FXML lateinit var id: TextField
+    @FXML override lateinit var id: TextField
     @FXML lateinit var name: TextField
     @FXML lateinit var palette: ComboBox<String>
 
@@ -62,12 +62,7 @@ class RoomTab {
         id.textProperty().addListener { observable, oldValue, newValue ->
             val room = teensy.world.getRoom(oldValue)
             if (room != null) {
-                room.id = newValue
-                val roomsTreeItem = teensy.controller.rooms
-                val oldTreeItem = roomsTreeItem.children.firstOrNull { treeItem -> treeItem.value == oldValue }
-                val index = roomsTreeItem.children.indexOf(oldTreeItem)
-                roomsTreeItem.children.remove(oldTreeItem)
-                teensy.controller.rooms.children.add(index, TreeItem<String>(newValue))
+                updateId(room, teensy.controller.rooms, oldValue, newValue)
             }
         }
 
@@ -196,7 +191,7 @@ class RoomTab {
     }
 
     fun loadRoom(room: BitsyRoom) {
-        id.text = room.id
+        load(room)
         for (x in 0..15) {
             for (y in 0..15) {
                 val square = RoomGridSquare(teensy.world)

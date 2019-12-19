@@ -35,11 +35,11 @@ import uk.co.renbinden.teensy.world.BitsyColor
 import uk.co.renbinden.teensy.world.BitsyItem
 import uk.co.renbinden.teensy.world.BitsySprite
 
-class SpriteTab {
+class SpriteTab : ResourceTab<BitsySprite>() {
 
-    lateinit var teensy: Teensy
+    override lateinit var teensy: Teensy
 
-    @FXML lateinit var id: TextField
+    @FXML override lateinit var id: TextField
     @FXML lateinit var grid: GridPane
     @FXML lateinit var name: TextField
     @FXML lateinit var dialog: ComboBox<String>
@@ -53,12 +53,7 @@ class SpriteTab {
         id.textProperty().addListener { observable, oldValue, newValue ->
             val sprite = teensy.world.getSprite(oldValue)
             if (sprite != null) {
-                sprite.id = newValue
-                val spritesTreeSprite = teensy.controller.sprites
-                val oldTreeSprite = spritesTreeSprite.children.firstOrNull { treeSprite -> treeSprite.value == oldValue }
-                val index = spritesTreeSprite.children.indexOf(oldTreeSprite)
-                spritesTreeSprite.children.remove(oldTreeSprite)
-                teensy.controller.sprites.children.add(index, TreeItem<String>(newValue))
+                updateId(sprite, teensy.controller.sprites, oldValue, newValue)
             }
         }
 
@@ -75,7 +70,7 @@ class SpriteTab {
     }
 
     fun loadSprite(sprite: BitsySprite) {
-        id.text = sprite.id
+        load(sprite)
         for (x in 0..7) {
             for (y in 0..7) {
                 val square = SpriteGridSquare()

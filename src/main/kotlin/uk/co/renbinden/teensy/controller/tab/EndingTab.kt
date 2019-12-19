@@ -19,25 +19,22 @@ package uk.co.renbinden.teensy.controller.tab
 import javafx.fxml.FXML
 import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
-import javafx.scene.control.TreeItem
 import uk.co.renbinden.teensy.Teensy
 import uk.co.renbinden.teensy.world.BitsyEnding
 
-class EndingTab {
+class EndingTab : ResourceTab<BitsyEnding>() {
+
+    override lateinit var teensy: Teensy
     
-    @FXML lateinit var id: TextField
+    @FXML override lateinit var id: TextField
     @FXML lateinit var ending: TextArea
     
     fun init(teensy: Teensy) {
+        this.teensy = teensy
         id.textProperty().addListener { observable, oldValue, newValue ->
             val ending = teensy.world.getEnding(oldValue)
             if (ending != null) {
-                ending.id = newValue
-                val endingTreeItem = teensy.controller.endings
-                val oldTreeItem = endingTreeItem.children.firstOrNull { treeItem -> treeItem.value == oldValue }
-                val index = endingTreeItem.children.indexOf(oldTreeItem)
-                endingTreeItem.children.remove(oldTreeItem)
-                teensy.controller.palettes.children.add(index, TreeItem<String>(newValue))
+                updateId(ending, teensy.controller.endings, oldValue, newValue)
             }
         }
 
@@ -50,7 +47,7 @@ class EndingTab {
     }
 
     fun loadEnding(ending: BitsyEnding) {
-        id.text = ending.id
+        load(ending)
         this.ending.text = ending.ending
     }
 

@@ -1,5 +1,5 @@
 /*
- *    Copyright 2019 Ross Binden
+ *    Copyright 2019 Ren Binden
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -20,11 +20,10 @@ import javafx.scene.image.Image
 
 
 class BitsyDrawing(
-    override val id: String, val frames: List<BitsyImageData>
+    override var id: String, val frames: List<BitsyImageData>
 ) : BitsyImageResource, BitsySerializable {
 
-    override val drawing: BitsyDrawing
-        get() = this
+    override val drawing: BitsyDrawing = this
 
     fun toImage(color: BitsyColor, width: Int? = null, height: Int? = null): Image {
         return if (width != null) {
@@ -43,13 +42,13 @@ class BitsyDrawing(
     }
 
     override fun serialize(): String {
-        return frames.joinToString("\n>\n") { frame -> frame.serialize() } + "\n"
+        return frames.joinToString("\n>\n") { frame -> frame.serialize() }
     }
 
     companion object {
         fun deserialize(lines: List<String>, i: Int, id: String? = null): BitsyDrawing {
             var j = i
-            val id = id ?: lines[j++].split(" ")[1]
+            val id1 = id ?: lines[j++].split(" ")[1]
             val frames = mutableListOf<BitsyImageData>()
             var y = 0
             var rows = mutableListOf<MutableList<Boolean>>()
@@ -71,7 +70,7 @@ class BitsyDrawing(
                     }
                 }
             }
-            return BitsyDrawing(id, frames)
+            return BitsyDrawing(id1, frames)
         }
 
         fun size(lines: List<String>, i: Int, id: String? = null): Int {

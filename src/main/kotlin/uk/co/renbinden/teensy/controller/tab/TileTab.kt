@@ -21,7 +21,6 @@ import javafx.fxml.FXML
 import javafx.scene.control.CheckBox
 import javafx.scene.control.Spinner
 import javafx.scene.control.TextField
-import javafx.scene.control.TreeItem
 import javafx.scene.input.MouseButton.PRIMARY
 import javafx.scene.input.MouseButton.SECONDARY
 import javafx.scene.input.MouseEvent
@@ -30,11 +29,11 @@ import uk.co.renbinden.teensy.Teensy
 import uk.co.renbinden.teensy.component.TileGridSquare
 import uk.co.renbinden.teensy.world.BitsyTile
 
-class TileTab {
+class TileTab : ResourceTab<BitsyTile>() {
 
-    lateinit var teensy: Teensy
+    override lateinit var teensy: Teensy
 
-    @FXML lateinit var id: TextField
+    @FXML override lateinit var id: TextField
     @FXML lateinit var grid: GridPane
     @FXML lateinit var name: TextField
     @FXML lateinit var wall: CheckBox
@@ -46,12 +45,7 @@ class TileTab {
         id.textProperty().addListener { observable, oldValue, newValue ->
             val tile = teensy.world.getTile(oldValue)
             if (tile != null) {
-                tile.id = newValue
-                val tilesTreeItem = teensy.controller.tiles
-                val oldTreeItem = tilesTreeItem.children.firstOrNull { treeItem -> treeItem.value == oldValue }
-                val index = tilesTreeItem.children.indexOf(oldTreeItem)
-                tilesTreeItem.children.remove(oldTreeItem)
-                teensy.controller.tiles.children.add(index, TreeItem<String>(newValue))
+                updateId(tile, teensy.controller.tiles, oldValue, newValue)
             }
         }
 
@@ -71,7 +65,7 @@ class TileTab {
     }
 
     fun loadTile(tile: BitsyTile) {
-        id.text = tile.id
+        load(tile)
         for (x in 0..7) {
             for (y in 0..7) {
                 val square = TileGridSquare()

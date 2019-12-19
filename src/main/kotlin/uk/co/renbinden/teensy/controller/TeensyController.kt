@@ -70,10 +70,10 @@ class TeensyController {
     }
 
     fun initMenuItems() {
-        menuItemNew.onAction = EventHandler<ActionEvent> { event ->
+        menuItemNew.onAction = EventHandler<ActionEvent> {
             teensy.world = BitsyWorld(false)
         }
-        menuItemOpen.onAction = EventHandler<ActionEvent> { event ->
+        menuItemOpen.onAction = EventHandler<ActionEvent> {
             val fileChooser = FileChooser()
             fileChooser.title = "Open"
             val bitsyFilter = FileChooser.ExtensionFilter("Bitsy files (*.bitsy)", "*.bitsy")
@@ -85,7 +85,7 @@ class TeensyController {
                 teensy.world = BitsyWorld.open(file)
             }
         }
-        menuItemSave.onAction = EventHandler<ActionEvent> { event ->
+        menuItemSave.onAction = EventHandler<ActionEvent> {
             val fileChooser = FileChooser()
             fileChooser.title = "Save"
             val bitsyFilter = FileChooser.ExtensionFilter("Bitsy files (*.bitsy)", "*.bitsy")
@@ -127,10 +127,9 @@ class TeensyController {
     }
 
     private fun createPaletteContextMenu(): ContextMenu {
-        val paletteContextMenu = ContextMenu(
+        return ContextMenu(
             createCreatePaletteMenuItem()
         )
-        return paletteContextMenu
     }
 
     private fun createCreatePaletteMenuItem(): MenuItem {
@@ -246,16 +245,11 @@ class TeensyController {
                     "TIL_$tileId",
                     mutableListOf(
                         BitsyImageData(
-                            mutableListOf(
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false)
-                            )
+                            MutableList(8) {
+                                MutableList(8) {
+                                    false
+                                }
+                            }
                         )
                     )
                 ),
@@ -289,16 +283,11 @@ class TeensyController {
                     "SPR_$spriteId",
                     mutableListOf(
                         BitsyImageData(
-                            mutableListOf(
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false),
-                                mutableListOf(false, false, false, false, false, false, false, false)
-                            )
+                            MutableList(8) {
+                                MutableList(8) {
+                                    false
+                                }
+                            }
                         )
                     )
                 ),

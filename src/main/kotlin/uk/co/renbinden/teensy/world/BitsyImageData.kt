@@ -1,5 +1,5 @@
 /*
- *    Copyright 2019 Ross Binden
+ *    Copyright 2019 Ren Binden
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -39,8 +39,8 @@ class BitsyImageData(
         for ((y, row) in data.withIndex()) {
             for ((x, col) in row.withIndex()) {
                 if (col) {
-                    for (subX in (x * scaleX)..(((x + 1) * scaleX) - 1)) {
-                        for (subY in (y * scaleY)..(((y + 1) * scaleY) - 1)) {
+                    for (subX in (x * scaleX) until ((x + 1) * scaleX)) {
+                        for (subY in (y * scaleY) until ((y + 1) * scaleY)) {
                             image.pixelWriter.setColor(subX, subY, color.toColor())
                         }
                     }

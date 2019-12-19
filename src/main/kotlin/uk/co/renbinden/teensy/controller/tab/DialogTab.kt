@@ -19,25 +19,22 @@ package uk.co.renbinden.teensy.controller.tab
 import javafx.fxml.FXML
 import javafx.scene.control.TextArea
 import javafx.scene.control.TextField
-import javafx.scene.control.TreeItem
 import uk.co.renbinden.teensy.Teensy
 import uk.co.renbinden.teensy.world.BitsyDialog
 
-class DialogTab {
+class DialogTab : ResourceTab<BitsyDialog>() {
 
-    @FXML lateinit var id: TextField
+    override lateinit var teensy: Teensy
+
+    @FXML override lateinit var id: TextField
     @FXML lateinit var dialog: TextArea
 
     fun init(teensy: Teensy) {
+        this.teensy = teensy
         id.textProperty().addListener { observable, oldValue, newValue ->
             val dialog = teensy.world.getDialog(oldValue)
             if (dialog != null) {
-                dialog.id = newValue
-                val dialogTreeItem = teensy.controller.dialogs
-                val oldTreeItem = dialogTreeItem.children.firstOrNull { treeItem -> treeItem.value == oldValue }
-                val index = dialogTreeItem.children.indexOf(oldTreeItem)
-                dialogTreeItem.children.remove(oldTreeItem)
-                dialogTreeItem.children.add(index, TreeItem<String>(newValue))
+                updateId(dialog, teensy.controller.dialogs, oldValue, newValue)
             }
         }
 
@@ -50,7 +47,7 @@ class DialogTab {
     }
 
     fun loadDialog(dialog: BitsyDialog) {
-        id.text = dialog.id
+        load(dialog)
         this.dialog.text = dialog.dialog
     }
 

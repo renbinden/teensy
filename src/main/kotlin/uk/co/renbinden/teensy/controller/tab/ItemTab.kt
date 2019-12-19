@@ -21,7 +21,6 @@ import javafx.fxml.FXML
 import javafx.scene.control.ComboBox
 import javafx.scene.control.Spinner
 import javafx.scene.control.TextField
-import javafx.scene.control.TreeItem
 import javafx.scene.input.MouseButton.PRIMARY
 import javafx.scene.input.MouseButton.SECONDARY
 import javafx.scene.input.MouseEvent
@@ -30,11 +29,11 @@ import uk.co.renbinden.teensy.Teensy
 import uk.co.renbinden.teensy.component.ItemGridSquare
 import uk.co.renbinden.teensy.world.BitsyItem
 
-class ItemTab {
+class ItemTab : ResourceTab<BitsyItem>() {
 
-    lateinit var teensy: Teensy
+    override lateinit var teensy: Teensy
 
-    @FXML lateinit var id: TextField
+    @FXML override lateinit var id: TextField
     @FXML lateinit var grid: GridPane
     @FXML lateinit var name: TextField
     @FXML lateinit var dialog: ComboBox<String>
@@ -46,12 +45,7 @@ class ItemTab {
         id.textProperty().addListener { observable, oldValue, newValue ->
             val item = teensy.world.getItem(oldValue)
             if (item != null) {
-                item.id = newValue
-                val itemsTreeItem = teensy.controller.items
-                val oldTreeItem = itemsTreeItem.children.firstOrNull { treeItem -> treeItem.value == oldValue }
-                val index = itemsTreeItem.children.indexOf(oldTreeItem)
-                itemsTreeItem.children.remove(oldTreeItem)
-                teensy.controller.items.children.add(index, TreeItem<String>(newValue))
+                updateId(item, teensy.controller.items, oldValue, newValue)
             }
         }
         
@@ -68,7 +62,7 @@ class ItemTab {
     }
 
     fun loadItem(item: BitsyItem) {
-        id.text = item.id
+        load(item)
         for (x in 0..7) {
             for (y in 0..7) {
                 val square = ItemGridSquare()
