@@ -68,7 +68,7 @@ class BitsyWorld : BitsySerializable {
     constructor(empty: Boolean = true) {
         if (empty) {
             this.title = BitsyTitle("")
-            this.version = BitsyVersion("5.4")
+            this.version = BitsyVersion("6.4")
             this.flags = mutableListOf()
             this.font = BitsyFont("ascii_small")
             this.palettes = mutableListOf()
@@ -82,7 +82,7 @@ class BitsyWorld : BitsySerializable {
             this.variables = mutableListOf()
         } else {
             this.title = BitsyTitle("")
-            this.version = BitsyVersion("5.4")
+            this.version = BitsyVersion("6.4")
             this.flags = mutableListOf(
                 BitsyFlag("ROOM_FORMAT", 1)
             )
